@@ -5,7 +5,21 @@ const Display = (props) => {
     const {todoList, setTodoList} = props;
 
     const deleteButton = (idfrombelow) => {
-        todoList.filter()
+        setTodoList(todoList.filter((todo, index) => todo.id !== idfrombelow));
+    }
+
+    const handleCompleted = (todo) => {
+        todo.markedDelete = !todo.markedDelete;
+        setTodoList([...todoList])
+    }
+
+    const styled = (markedDelete) => {
+        if(markedDelete === true){
+            return "completed"
+        }
+        else{
+            return "notCompleted"
+        }
     }
   return (
     <div>
@@ -13,7 +27,8 @@ const Display = (props) => {
         {
             todoList.map((todo, index) => (
                 <div key={index}>
-                    <p>{todo.todotext}</p>
+                    <p className={styled(todo.markedDelete)}>{todo.todotext}</p>
+                    <input onClick={() => handleCompleted(todo)} type="checkbox" />
                     <button onClick={() => deleteButton(todo.id)}>Delete</button>
                 </div>
             ))

@@ -10,7 +10,8 @@ const Forms = (props) => {
         e.preventDefault();
         setTodoList([...todoList, {
           todotext: todotext,
-          id: Math.floor(Math.random() * 10000).toString()
+          id: Math.floor(Math.random() * 10000).toString(),
+          markedDelete: false
         }
       ])
         setTodoText("");
